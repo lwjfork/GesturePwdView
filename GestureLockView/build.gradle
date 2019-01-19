@@ -51,19 +51,19 @@ rootProject.ext.PROJ_VERSION = "1.0.0"
 // 这里改成库名字 ， 比如appcompat
 rootProject.ext.PROJ_NAME = "GestureLockView"
 // 这里改成github地址 ， 比如https:github.com/android/appcompat
-rootProject.ext.PROJ_WEBSITEURL = "https://github.com/lwjfork/GesutrePwdView"
+rootProject.ext.PROJ_WEBSITEURL = "https://github.com/lwjfork/GesturePwdView"
 // 这里改成issue地址 ，
 //比如https:github.com/android/appcompat/issues
-rootProject.ext.PROJ_ISSUEURL = "https://github.com/lwjfork/GesutrePwdView/issues"
+rootProject.ext.PROJ_ISSUEURL = "https://github.com/lwjfork/GesturePwdView/issues"
 // 这里改成版本控制地主 ，
 // 比如https:github.com/android/appcompat.git
-rootProject.ext.PROJ_VCSURL = "https://github.com/lwjfork/GesutrePwdView.git"
+rootProject.ext.PROJ_VCSURL = "https://github.com/lwjfork/GesturePwdView.git"
 // 这里改成库的描述信息
-rootProject.ext.PROJ_DESCRIPTION = "GesutrePwdView"
+rootProject.ext.PROJ_DESCRIPTION = "GestureLockView"
 // 这里改成库的标示 ， 比如appcompat - v7
-rootProject.ext.PROJ_ARTIFACTID = "GesutrePwdView"
+rootProject.ext.PROJ_ARTIFACTID = "GestureLockView"
 // 发布时必须有值，建议写到  local.properties 里
-//rootProject.ext.BINTRAY_APIKEY = "" //
+rootProject.ext.BINTRAY_APIKEY = "" //
 
 
 apply from: "https://raw.githubusercontent.com/lwjfork/scriptlib/master/gradle/bintray.gradle"
