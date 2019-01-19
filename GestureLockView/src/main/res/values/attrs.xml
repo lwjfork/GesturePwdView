@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <declare-styleable name="GestureLockView">
+        <!--选中的图-->
+        <attr name="selectDrawable" format="reference" />
+        <!--没选中图-->
+        <attr name="normalDrawable" format="reference" />
+        <!--错误图-->
+        <attr name="errorDrawable" format="reference" />
+        <!--行数-->
+        <attr name="rowNums" format="integer" />
+        <!--列数-->
+        <attr name="columnNums" format="integer" />
+        <!--图片宽-->
+        <attr name="dotWidth" format="dimension" />
+        <!--图片高度-->
+        <attr name="dotHeight" format="dimension" />
+        <!--点与点水平间距-->
+        <attr name="spaceH" format="dimension" />
+        <!--点与点竖直间距-->
+        <attr name="spaceV" format="dimension" />
+        <!--线的颜色 绘制状态下-->
+        <attr name="lineColor" format="color" />
+        <!--线的颜色 错误状态下-->
+        <attr name="lineErrorColor" format="color" />
+        <!--线的宽度-->
+        <attr name="lineWidth" format="dimension" />
+        <!--是否自动选中中间的点-->
+        <attr name="autoSelectMiddle" format="boolean" />
+        <!--多少毫秒以后清空-->
+        <attr name="delayClearTime" format="integer" />
+    </declare-styleable>
+
+</resources>
