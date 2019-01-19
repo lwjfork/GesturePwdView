@@ -134,7 +134,7 @@ public class BaseGestureLockView extends FrameLayout {
             for (int j = 0; j < columnNums; j++) {
                 int index = getPointIndex(i,j);
                 GestureLockPointView pointView = (GestureLockPointView) getChildAt(index);
-                Rect rect = pointPosition.get(getPointIndex(i, j));
+                Rect rect = pointPosition.get(index);
                 pointView.layout(rect.left, rect.top, rect.right, rect.bottom);
             }
         }
