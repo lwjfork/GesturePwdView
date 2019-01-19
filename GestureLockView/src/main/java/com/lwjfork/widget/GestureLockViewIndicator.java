@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 /**
@@ -38,10 +37,23 @@ public class GestureLockViewIndicator extends BaseGestureLockView {
     @Override
     protected void init(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super.init(context, attrs, defStyleAttr, defStyleRes);
-        if (isInEditMode()) {
-            selectListIndex = new ArrayList<>(Arrays.asList("1,4,9".split(",")));
-        }
+        inEditMode();
         refreshDot();
+    }
+
+
+    private void inEditMode() {
+        if (isInEditMode()) {
+            selectListIndex = new ArrayList<>();
+            for (int i = 0; i < rowNums; i++) {
+                for (int j = 0; j < columnNums; j++) {
+                    if (i == 0 || i == j || i == rowNums - 1) {
+                        int index = getPointIndex(i, j);
+                        selectListIndex.add(index + "");
+                    }
+                }
+            }
+        }
     }
 
 

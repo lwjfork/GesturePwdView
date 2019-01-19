@@ -62,14 +62,13 @@ public class GestureLockView extends BaseGestureLockView {
         initPaint();
     }
 
-
     private void inEditMode() {
         if (isInEditMode()) {
             resultCode = new ArrayList<>();
             for (int i = 0; i < rowNums; i++) {
-                for (int i1 = 0; i1 < columnNums; i1++) {
-                    if ((i * i1 == 0 && (i >= i1)) || i == i1) {
-                        int index = getPointIndex(i, i1);
+                for (int j = 0; j < columnNums; j++) {
+                    if (i == 0 || i == j || i == rowNums - 1) {
+                        int index = getPointIndex(i, j);
                         resultCode.add(index);
                         setChildState(index, SelectedState.STATE_RIGHT);
                     }
