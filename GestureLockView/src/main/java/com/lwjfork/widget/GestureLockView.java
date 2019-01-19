@@ -165,7 +165,7 @@ public class GestureLockView extends BaseGestureLockView {
                 if (preIndex != index) {
                     if (indexs != null && indexs.size() > 0) {
                         for (Point point : indexs) {
-                            int pointIndex = indexOfRowAndColumn(point.x, point.y);
+                            int pointIndex = getPointIndex(point.x, point.y);
                             if (pointViews.get(pointIndex).getSelectState() != SelectedState.STATE_RIGHT) {
                                 setChildState(pointIndex, SelectedState.STATE_RIGHT);
                                 resultCode.add(pointIndex);

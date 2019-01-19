@@ -132,7 +132,7 @@ public class BaseGestureLockView extends FrameLayout {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         for (int i = 0; i < rowNums; i++) {
             for (int j = 0; j < columnNums; j++) {
-                int index = i * rowNums + j;
+                int index = getPointIndex(i,j);
                 GestureLockPointView pointView = (GestureLockPointView) getChildAt(index);
                 Rect rect = pointPosition.get(getPointIndex(i, j));
                 pointView.layout(rect.left, rect.top, rect.right, rect.bottom);
@@ -395,15 +395,6 @@ public class BaseGestureLockView extends FrameLayout {
         return -1;
     }
 
-
-    /**
-     * @param rowIndex    横向索引
-     * @param columnIndex 纵向索引
-     * @return 当前所处点的索引
-     */
-    protected final int indexOfRowAndColumn(int rowIndex, int columnIndex) {
-        return rowIndex * rowNums + columnIndex;
-    }
 
 
 }
