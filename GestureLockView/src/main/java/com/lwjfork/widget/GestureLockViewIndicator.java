@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class GestureLockViewIndicator extends BaseGestureLockView {
 
-    private ArrayList<String> selectListIndex = new ArrayList<>();
+    private ArrayList<Integer> selectListIndex = new ArrayList<>();
 
     public GestureLockViewIndicator(Context context) {
         super(context, null);
@@ -49,7 +49,7 @@ public class GestureLockViewIndicator extends BaseGestureLockView {
                 for (int j = 0; j < columnNums; j++) {
                     if (i == 0 || i == j || i == rowNums - 1) {
                         int index = getPointIndex(i, j);
-                        selectListIndex.add(index + "");
+                        selectListIndex.add(index);
                     }
                 }
             }
@@ -62,12 +62,9 @@ public class GestureLockViewIndicator extends BaseGestureLockView {
      *
      * @param paramString 手势密码字符序列
      */
-    public void setPath(String paramString) {
-        int length = paramString.length();
-        selectListIndex = new ArrayList<>();
-        for (int i = 0; i < length; i++) {
-            selectListIndex.add(paramString.substring(i, i + 1));
-        }
+    @SuppressWarnings("unchecked")
+    public <T> void setPath(T paramString) {
+        selectListIndex = onDecodeAdapter.decodePath(paramString);
         refreshDot();
     }
 
@@ -75,11 +72,32 @@ public class GestureLockViewIndicator extends BaseGestureLockView {
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
             GestureLockPointView childView = (GestureLockPointView) getChildAt(i);
-            if (selectListIndex != null && selectListIndex.contains("" + i)) {
+            if (selectListIndex != null && selectListIndex.contains( i)) {
                 childView.setSelectState(SelectedState.STATE_RIGHT);
             } else {
                 childView.setSelectState(SelectedState.STATE_NONE);
             }
         }
+    }
+
+    public void setOnDecodeAdapter(OnDecodeAdapter onDecodeAdapter) {
+        this.onDecodeAdapter = onDecodeAdapter;
+    }
+
+    OnDecodeAdapter onDecodeAdapter = new DefaultDecodeAdapter();
+
+    private class DefaultDecodeAdapter implements OnDecodeAdapter<ArrayList<Integer>> {
+
+        @Override
+        public ArrayList<Integer> decodePath(ArrayList<Integer> object) {
+            return object;
+        }
+    }
+
+
+    public interface OnDecodeAdapter<T> {
+
+        ArrayList<Integer> decodePath(T object);
+
     }
 }

@@ -241,7 +241,7 @@ public class GestureLockView extends BaseGestureLockView {
                 drawPathLine();
                 reset();
                 if (onGestureCallBackListener != null) {
-                    onGestureCallBackListener.onCheckedSuccess(onGetCodeAdapter.adapter(resultCode));
+                    onGestureCallBackListener.onCheckedSuccess(resultCode, onGetCodeAdapter.convertCode2Obj(resultCode));
                 }
 
             } else {
@@ -251,7 +251,7 @@ public class GestureLockView extends BaseGestureLockView {
                 currentPaint = errorPaint;
                 drawPathLine();
                 if (onGestureCallBackListener != null) {
-                    onGestureCallBackListener.onCheckedFail(onGetCodeAdapter.adapter(resultCode));
+                    onGestureCallBackListener.onCheckedFail(resultCode, onGetCodeAdapter.convertCode2Obj(resultCode));
                 }
                 reset();
             }
@@ -260,7 +260,7 @@ public class GestureLockView extends BaseGestureLockView {
             drawPathLine();
 
             if (onGestureCallBackListener != null) {
-                onGestureCallBackListener.onGestureCodeInput(onGetCodeAdapter.adapter((ArrayList<Integer>) resultCode.clone()));
+                onGestureCallBackListener.onGestureCodeInput(resultCode, onGetCodeAdapter.convertCode2Obj((ArrayList<Integer>) resultCode.clone()));
             }
             reset();
         }
@@ -270,8 +270,9 @@ public class GestureLockView extends BaseGestureLockView {
     /**
      * 设置以前的路径
      */
-    public void setOldPath(Object old) {
-        oldCode = onGetCodeAdapter.adapterOldCode(old);
+    @SuppressWarnings("unchecked")
+    public <T> void setOldPath(T old) {
+        oldCode = onGetCodeAdapter.convertObj2Code(old);
         isVerify = true;
     }
 
@@ -328,52 +329,57 @@ public class GestureLockView extends BaseGestureLockView {
         this.onGestureCallBackListener = onGestureCallBackListener;
     }
 
-    public interface OnGestureCallBackListener {
+    public interface OnGestureCallBackListener<V> {
 
         /**
          * 用户设置/输入了手势密码
          */
-        default void onGestureCodeInput(Object inputCode) {
+        default void onGestureCodeInput(ArrayList<Integer> code, V inputCode) {
 
         }
 
         /**
          * 代表用户绘制的密码与传入的密码相同
          */
-        default void onCheckedSuccess(Object rightCode) {
+        default void onCheckedSuccess(ArrayList<Integer> code, V rightCode) {
 
         }
 
         /**
          * 代表用户绘制的密码与传入的密码不相同
          */
-        default void onCheckedFail(Object errorCode) {
+        default void onCheckedFail(ArrayList<Integer> code, V errorCode) {
 
         }
     }
 
 
-    public interface OnGetCodeAdapter {
+    public interface OnCodeConvertAdapter<T, V> {
 
-        ArrayList<Integer> adapterOldCode(Object oldCode);
+        ArrayList<Integer> convertObj2Code(T oldCode);
 
-        Object adapter(ArrayList<Integer> oldCode);
+        V convertCode2Obj(ArrayList<Integer> code);
+
+
     }
 
 
-    private OnGetCodeAdapter onGetCodeAdapter = new OnGetCodeAdapter() {
+    private class DefaultCodeConvertAdapter implements OnCodeConvertAdapter<ArrayList<Integer>, ArrayList<Integer>> {
         @Override
-        public ArrayList<Integer> adapterOldCode(Object oldCode) {
-            return (ArrayList<Integer>) oldCode;
+        public ArrayList<Integer> convertObj2Code(ArrayList<Integer> code) {
+            return code;
         }
 
         @Override
-        public Object adapter(ArrayList<Integer> oldCode) {
-            return oldCode;
+        public ArrayList<Integer> convertCode2Obj(ArrayList code) {
+            return code;
         }
-    };
+    }
 
-    public void setOnGetCodeAdapter(OnGetCodeAdapter onGetCodeAdapter) {
+
+    private OnCodeConvertAdapter onGetCodeAdapter = new DefaultCodeConvertAdapter();
+
+    public void setOnCodeConvertAdapter(OnCodeConvertAdapter onGetCodeAdapter) {
         this.onGetCodeAdapter = onGetCodeAdapter;
     }
 
