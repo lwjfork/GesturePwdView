@@ -114,7 +114,7 @@ delayClearTime | 当绘制完成后-所停留时长恢复状态
     lockViewIndicator..setOnCodeConvertAdapter(new OnCodeAdapter())；
     
 
-#代码混淆
+# 代码混淆
 
     -keep class com.lwjfork.widget.**{*;}
 
