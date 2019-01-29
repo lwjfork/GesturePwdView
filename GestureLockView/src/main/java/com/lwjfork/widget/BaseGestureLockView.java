@@ -132,7 +132,7 @@ public class BaseGestureLockView extends FrameLayout {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         for (int i = 0; i < rowNums; i++) {
             for (int j = 0; j < columnNums; j++) {
-                int index = getPointIndex(i,j);
+                int index = getPointIndex(i, j);
                 GestureLockPointView pointView = (GestureLockPointView) getChildAt(index);
                 Rect rect = pointPosition.get(index);
                 pointView.layout(rect.left, rect.top, rect.right, rect.bottom);
@@ -174,6 +174,8 @@ public class BaseGestureLockView extends FrameLayout {
         if (resultWidth > paddingLeft + paddingRight + contentSizeH) {
             startIndexX = (resultWidth - contentSizeH) / 2;
         }
+        // fix 多次测量导致坐标异常
+        pointPosition.clear();
         for (int i = 0; i < rowNums; i++) {
             for (int j = 0; j < columnNums; j++) {
                 Rect rect = new Rect();
@@ -394,7 +396,6 @@ public class BaseGestureLockView extends FrameLayout {
         }
         return -1;
     }
-
 
 
 }
