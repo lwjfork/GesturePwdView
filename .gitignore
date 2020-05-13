@@ -52,3 +52,4 @@ app/mirror
 *.log
 captures
 /mapping*.txt
+/GestureLockView/reports/
