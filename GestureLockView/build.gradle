@@ -37,5 +37,6 @@ dependencies {
     compileOnly "com.android.support:appcompat-v7:$SLVersion"
 }
 
-apply from: "https://raw.githubusercontent.com/lwjfork/scriptlib/master/gradle/publish/publish-module.gradle"
+
+apply from: "https://raw.githubusercontent.com/lwjfork/scriptlib/master/gradle/publish/maven/aar/publish-no-kotlin.gradle"
 
