@@ -30,6 +30,5 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:$SLVersion"
-    implementation 'com.github.lwjfork:GestureLockView:1.0.5'
-//    implementation project(':GestureLockView')
+    implementation 'io.github.lwjfork:GestureLockView:1.0.5'
 }

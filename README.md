@@ -3,7 +3,7 @@
 ## gradle 导入
 
 ```
-     implementation 'com.github.lwjfork:GestureLockView:1.0.5'
+     implementation 'io.github.lwjfork:GestureLockView:1.0.5'
 ```
 
 ## 属性使用
